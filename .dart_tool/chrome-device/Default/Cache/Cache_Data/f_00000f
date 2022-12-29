@@ -1,0 +1,771 @@
+define(['dart_sdk', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__animated_text_kit__src__typewriter_dart(dart_sdk, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__curves$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  var typewriter = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $truncate = dartx.truncate;
+  var $add = dartx.add;
+  var $modulo = dartx['%'];
+  var $substring = dartx.substring;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    AnimationOfintL: () => (T.AnimationOfintL = dart.constFn(animation.Animation$(T.intL())))(),
+    AnimationLOfintL: () => (T.AnimationLOfintL = dart.constFn(dart.legacy(T.AnimationOfintL())))(),
+    JSArrayOfAnimationLOfintL: () => (T.JSArrayOfAnimationLOfintL = dart.constFn(_interceptors.JSArray$(T.AnimationLOfintL())))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    AnimationOfdoubleL: () => (T.AnimationOfdoubleL = dart.constFn(animation.Animation$(T.doubleL())))(),
+    AnimationLOfdoubleL: () => (T.AnimationLOfdoubleL = dart.constFn(dart.legacy(T.AnimationOfdoubleL())))(),
+    JSArrayOfAnimationLOfdoubleL: () => (T.JSArrayOfAnimationLOfdoubleL = dart.constFn(_interceptors.JSArray$(T.AnimationLOfdoubleL())))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    TweenOfdoubleL: () => (T.TweenOfdoubleL = dart.constFn(tween.Tween$(T.doubleL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    TextL: () => (T.TextL = dart.constFn(dart.legacy(text.Text)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToTextL: () => (T.BuildContextLToTextL = dart.constFn(dart.fnType(T.TextL(), [T.BuildContextL()])))(),
+    OpacityL: () => (T.OpacityL = dart.constFn(dart.legacy(basic.Opacity)))(),
+    BuildContextLAndWidgetLToOpacityL: () => (T.BuildContextLAndWidgetLToOpacityL = dart.constFn(dart.fnType(T.OpacityL(), [T.BuildContextL(), T.WidgetL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: alignment.AlignmentDirectional.prototype,
+        [AlignmentDirectional_y]: -1,
+        [AlignmentDirectional_start]: -1
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: ui.TextAlign.prototype,
+        [_name]: "TextAlign.start",
+        index: 4
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 148,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 149,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 21,
+        [_Location_line]: 150,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[3] || CT.C3,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 147,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 127,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 126,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 15,
+        [_Location_line]: 125,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 126,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 124,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 11,
+        [_Location_line]: 122,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 11,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 121,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 23,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 23,
+        [_Location_line]: 189,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 19,
+        [_Location_line]: 165,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 164,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 17,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 162,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 13,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 159,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 23,
+        [_Location_line]: 225,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 23,
+        [_Location_line]: 227,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 224,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 19,
+        [_Location_line]: 203,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41], T._LocationL());
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 202,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 17,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 202,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 13,
+        [_Location_line]: 198,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 199,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49], T._LocationL());
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[47] || CT.C47,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 197,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 9,
+        [_Location_line]: 241,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 242,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 240,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 7,
+        [_Location_line]: 239,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 240,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 238,
+        [_Location_file]: "file:///C:/Src/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-1.3.1/lib/src/typewriter.dart"
+      });
+    }
+  }, false);
+  var C = Array(58).fill(void 0);
+  var I = ["package:animated_text_kit/src/typewriter.dart"];
+  var text$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.text");
+  var textStyle$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.textStyle");
+  var duration$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.duration");
+  var onTap$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.onTap");
+  var alignment$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.alignment");
+  var textAlign$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.textAlign");
+  var isRepeatingAnimation$ = dart.privateName(typewriter, "TypewriterAnimatedTextKit.isRepeatingAnimation");
+  var AlignmentDirectional_y = dart.privateName(alignment, "AlignmentDirectional.y");
+  var AlignmentDirectional_start = dart.privateName(alignment, "AlignmentDirectional.start");
+  var _name = dart.privateName(ui, "_name");
+  typewriter.TypewriterAnimatedTextKit = class TypewriterAnimatedTextKit extends framework.StatefulWidget {
+    get text() {
+      return this[text$];
+    }
+    set text(value) {
+      super.text = value;
+    }
+    get textStyle() {
+      return this[textStyle$];
+    }
+    set textStyle(value) {
+      super.textStyle = value;
+    }
+    get duration() {
+      return this[duration$];
+    }
+    set duration(value) {
+      super.duration = value;
+    }
+    get onTap() {
+      return this[onTap$];
+    }
+    set onTap(value) {
+      super.onTap = value;
+    }
+    get alignment() {
+      return this[alignment$];
+    }
+    set alignment(value) {
+      super.alignment = value;
+    }
+    get textAlign() {
+      return this[textAlign$];
+    }
+    set textAlign(value) {
+      super.textAlign = value;
+    }
+    get isRepeatingAnimation() {
+      return this[isRepeatingAnimation$];
+    }
+    set isRepeatingAnimation(value) {
+      super.isRepeatingAnimation = value;
+    }
+    createState() {
+      return new typewriter._TypewriterState.new();
+    }
+  };
+  (typewriter.TypewriterAnimatedTextKit.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let text = opts && 'text' in opts ? opts.text : null;
+    let textStyle = opts && 'textStyle' in opts ? opts.textStyle : null;
+    let duration = opts && 'duration' in opts ? opts.duration : null;
+    let onTap = opts && 'onTap' in opts ? opts.onTap : null;
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[0] || CT.C0;
+    let textAlign = opts && 'textAlign' in opts ? opts.textAlign : C[1] || CT.C1;
+    let isRepeatingAnimation = opts && 'isRepeatingAnimation' in opts ? opts.isRepeatingAnimation : true;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[text$] = text;
+    this[textStyle$] = textStyle;
+    this[duration$] = duration;
+    this[onTap$] = onTap;
+    this[alignment$] = alignment;
+    this[textAlign$] = textAlign;
+    this[isRepeatingAnimation$] = isRepeatingAnimation;
+    typewriter.TypewriterAnimatedTextKit.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = typewriter.TypewriterAnimatedTextKit.prototype;
+  dart.addTypeTests(typewriter.TypewriterAnimatedTextKit);
+  dart.addTypeCaches(typewriter.TypewriterAnimatedTextKit);
+  dart.setMethodSignature(typewriter.TypewriterAnimatedTextKit, () => ({
+    __proto__: dart.getMethods(typewriter.TypewriterAnimatedTextKit.__proto__),
+    createState: dart.fnType(dart.legacy(typewriter._TypewriterState), [])
+  }));
+  dart.setLibraryUri(typewriter.TypewriterAnimatedTextKit, I[0]);
+  dart.setFieldSignature(typewriter.TypewriterAnimatedTextKit, () => ({
+    __proto__: dart.getFields(typewriter.TypewriterAnimatedTextKit.__proto__),
+    text: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    textStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle)),
+    duration: dart.finalFieldType(dart.legacy(core.Duration)),
+    onTap: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, []))),
+    alignment: dart.finalFieldType(dart.legacy(alignment.AlignmentGeometry)),
+    textAlign: dart.finalFieldType(dart.legacy(ui.TextAlign)),
+    isRepeatingAnimation: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  var _duration = dart.privateName(typewriter, "_duration");
+  var _controller = dart.privateName(typewriter, "_controller");
+  var _typewriterText = dart.privateName(typewriter, "_typewriterText");
+  var _fadeOut = dart.privateName(typewriter, "_fadeOut");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(dart.legacy(typewriter.TypewriterAnimatedTextKit)) {};
+  (State_SingleTickerProviderStateMixin$36.new = function() {
+    ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(typewriter.TypewriterAnimatedTextKit))[dart.mixinNew].call(this);
+    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(typewriter.TypewriterAnimatedTextKit)));
+  typewriter._TypewriterState = class _TypewriterState extends State_SingleTickerProviderStateMixin$36 {
+    initState() {
+      let t0;
+      super.initState();
+      if (this.widget.duration == null) {
+        let totalCharacters = 0;
+        for (let i = 0; i < dart.notNull(this.widget.text[$length]); i = i + 1) {
+          totalCharacters = totalCharacters + (this.widget.text[$_get](i).length + 8);
+        }
+        this[_duration] = new core.Duration.new({milliseconds: (totalCharacters * 5000 / 15)[$truncate]()});
+      } else {
+        this[_duration] = this.widget.duration;
+      }
+      this[_controller] = new animation_controller.AnimationController.new({duration: this[_duration], vsync: this});
+      if (dart.test(this.widget.isRepeatingAnimation)) {
+        t0 = this[_controller];
+        (() => {
+          t0.repeat();
+          return t0;
+        })();
+      } else {
+        this[_controller].forward();
+      }
+      let totalCharacters = 0;
+      for (let i = 0; i < dart.notNull(this.widget.text[$length]); i = i + 1) {
+        totalCharacters = totalCharacters + (this.widget.text[$_get](i).length + 8);
+      }
+      let percentTimeCount = 0.0;
+      for (let i = 0; i < dart.notNull(this.widget.text[$length]); i = i + 1) {
+        let percentTime = (this.widget.text[$_get](i).length + 8) / totalCharacters;
+        this[_typewriterText][$add](new tween.StepTween.new({begin: 0, end: this.widget.text[$_get](i).length + 8}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: new curves.Interval.new(percentTimeCount, percentTimeCount + percentTime * 8 / 10, {curve: curves.Curves.linear})})));
+        this[_fadeOut][$add](new (T.TweenOfdoubleL()).new({begin: 1.0, end: 0.0}).animate(new animations.CurvedAnimation.new({parent: this[_controller], curve: new curves.Interval.new(percentTimeCount + percentTime * 9 / 10, percentTimeCount + percentTime, {curve: curves.Curves.easeIn})})));
+        percentTimeCount = percentTimeCount + percentTime;
+      }
+    }
+    dispose() {
+      this[_controller].dispose();
+      super.dispose();
+    }
+    build(context) {
+      for (let i = 0; i < dart.notNull(this.widget.text[$length]); i = i + 1) {
+        if (i !== dart.notNull(this.widget.text[$length]) - 1) {
+          this.textWidgetList[$add](new transitions.AnimatedBuilder.new({animation: this[_controller], builder: dart.fn((context, child) => new basic.Opacity.new({opacity: this[_fadeOut][$_get](i).value, child: new basic.Builder.new({builder: dart.fn(context => {
+                  let visibleString = this.widget.text[$_get](i);
+                  if (this[_typewriterText][$_get](i).value === 0) {
+                    visibleString = "";
+                  } else if (dart.notNull(this[_typewriterText][$_get](i).value) > this.widget.text[$_get](i).length) {
+                    if ((dart.notNull(this[_typewriterText][$_get](i).value) - this.widget.text[$_get](i).length)[$modulo](2) === 0) {
+                      visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length) + "_";
+                    } else {
+                      visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length);
+                    }
+                  } else {
+                    visibleString = this.widget.text[$_get](i)[$substring](0, this[_typewriterText][$_get](i).value) + "_";
+                  }
+                  return new text.Text.new(visibleString, {style: this.widget.textStyle, textAlign: this.widget.textAlign, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2});
+                }, T.BuildContextLToTextL()), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), T.BuildContextLAndWidgetLToOpacityL()), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}));
+        } else {
+          if (dart.test(this.widget.isRepeatingAnimation)) {
+            this.textWidgetList[$add](new transitions.AnimatedBuilder.new({animation: this[_controller], builder: dart.fn((context, child) => new basic.Opacity.new({opacity: this[_fadeOut][$_get](i).value, child: new basic.Builder.new({builder: dart.fn(context => {
+                    let visibleString = this.widget.text[$_get](i);
+                    if (this[_typewriterText][$_get](i).value === 0) {
+                      visibleString = "";
+                    } else if (dart.notNull(this[_typewriterText][$_get](i).value) > this.widget.text[$_get](i).length) {
+                      if ((dart.notNull(this[_typewriterText][$_get](i).value) - this.widget.text[$_get](i).length)[$modulo](2) === 0) {
+                        visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length) + "_";
+                      } else {
+                        visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length);
+                      }
+                    } else {
+                      visibleString = this.widget.text[$_get](i)[$substring](0, this[_typewriterText][$_get](i).value) + "_";
+                    }
+                    return new text.Text.new(visibleString, {style: this.widget.textStyle, textAlign: this.widget.textAlign, $creationLocationd_0dea112b090073317d4: C[18] || CT.C18});
+                  }, T.BuildContextLToTextL()), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), T.BuildContextLAndWidgetLToOpacityL()), $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}));
+          } else {
+            this.textWidgetList[$add](new transitions.AnimatedBuilder.new({animation: this[_controller], builder: dart.fn((context, child) => new basic.Opacity.new({opacity: 1.0, child: new basic.Builder.new({builder: dart.fn(context => {
+                    let visibleString = this.widget.text[$_get](i);
+                    if (this[_typewriterText][$_get](i).value === 0) {
+                      visibleString = "";
+                    } else if (dart.notNull(this[_typewriterText][$_get](i).value) > this.widget.text[$_get](i).length) {
+                      if ((dart.notNull(this[_typewriterText][$_get](i).value) - this.widget.text[$_get](i).length)[$modulo](2) === 0) {
+                        visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length) + "_";
+                      } else {
+                        visibleString = this.widget.text[$_get](i)[$substring](0, this.widget.text[$_get](i).length);
+                      }
+                    } else {
+                      visibleString = this.widget.text[$_get](i)[$substring](0, this[_typewriterText][$_get](i).value) + "_";
+                    }
+                    return new text.Text.new(visibleString, {style: this.widget.textStyle, textAlign: this.widget.textAlign, $creationLocationd_0dea112b090073317d4: C[34] || CT.C34});
+                  }, T.BuildContextLToTextL()), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), T.BuildContextLAndWidgetLToOpacityL()), $creationLocationd_0dea112b090073317d4: C[46] || CT.C46}));
+          }
+        }
+      }
+      return new gesture_detector.GestureDetector.new({onTap: this.widget.onTap, child: new basic.Stack.new({alignment: this.widget.alignment, children: this.textWidgetList, $creationLocationd_0dea112b090073317d4: C[50] || CT.C50}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54});
+    }
+  };
+  (typewriter._TypewriterState.new = function() {
+    this[_duration] = null;
+    this[_controller] = null;
+    this[_typewriterText] = T.JSArrayOfAnimationLOfintL().of([]);
+    this[_fadeOut] = T.JSArrayOfAnimationLOfdoubleL().of([]);
+    this.textWidgetList = T.JSArrayOfWidgetL().of([]);
+    typewriter._TypewriterState.__proto__.new.call(this);
+    ;
+  }).prototype = typewriter._TypewriterState.prototype;
+  dart.addTypeTests(typewriter._TypewriterState);
+  dart.addTypeCaches(typewriter._TypewriterState);
+  dart.setMethodSignature(typewriter._TypewriterState, () => ({
+    __proto__: dart.getMethods(typewriter._TypewriterState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(typewriter._TypewriterState, I[0]);
+  dart.setFieldSignature(typewriter._TypewriterState, () => ({
+    __proto__: dart.getFields(typewriter._TypewriterState.__proto__),
+    [_duration]: dart.fieldType(dart.legacy(core.Duration)),
+    [_controller]: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    [_typewriterText]: dart.fieldType(dart.legacy(core.List$(dart.legacy(animation.Animation$(dart.legacy(core.int)))))),
+    [_fadeOut]: dart.fieldType(dart.legacy(core.List$(dart.legacy(animation.Animation$(dart.legacy(core.double)))))),
+    textWidgetList: dart.fieldType(dart.legacy(core.List$(dart.legacy(framework.Widget))))
+  }));
+  dart.trackLibraries("packages/animated_text_kit/src/typewriter.dart", {
+    "package:animated_text_kit/src/typewriter.dart": typewriter
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["typewriter.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../H:/packages/animated_text_kit/src/typewriter.dart.lib.js"}');
+  // Exports:
+  return {
+    src__typewriter: typewriter
+  };
+}));
+
+//# sourceMappingURL=typewriter.dart.lib.js.map
